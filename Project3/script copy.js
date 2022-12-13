@@ -2,19 +2,23 @@ var doc= document;
 const array=document.getElementsByTagName("button");
 
 /*let arr2=['b1','b2','b3','b4','b5','b6','b7','b8','b9'];*/
-let board =["", "", "", "", "", "", "", "", ""]
+let board =["", "", "", "", "", "", "", "", ""];
 var drawPoint =9
+const boardIndex =['b1','b2','b3','b4','b5','b6','b7','b8','b9']
 
-/*let boardIndex =['b1','b2','b3','b4','b5','b6','b7','b8','b9']*/
-;
-/*let myButton = document.getElementById('b1','b2','b3','b4','b5','b6','b7','b8','b9');*/
+
+
 let playerTurn= document.getElementById('turn');
 for (var i=0; i <array.length;i++){
    
    console.log(array[i]);
-  var boardQ =array[i];
+  let  boardQ = (array[i]);
+  console.log(boardQ)
    boardQ.addEventListener("click",testClick);
+  boardQ.addEventListener("click",buttonClick);
+  
    /*boardQ.addEventListener("click",checkPlayer);*/
+   
    
 
  /*var boardStick=board[i];*/
@@ -22,13 +26,13 @@ for (var i=0; i <array.length;i++){
 }
 
 /*console.log(board);*/
-console.log(array);
+console.log(boardQ);
 var player1 ="X";
 var player2 ="0";
 
 
 let currentPlayer= player1;
-let gameOn=false;
+let gameOn=true;
 
 console.log(gameOn);
 
@@ -50,31 +54,39 @@ const winningConditon=[
 startGame();
 
 function startGame(){
-   gameOn=true;
+   
+  
    let currTurn= document.getElementById("turn");
    currTurn.innerText = currentPlayer + "'s turn";
+   console.log(boardQ)
+
   
    
    }
-  /*function gameIsWinAndFIn(){
-
-  }*/
-
-function testClick() {
-   console.log("x");
-   let text=board
+  function buttonClick(){
+   const boardIndex=array;
+   console.log(boardIndex);
+   if(board[boardIndex]!=""||!gameOn){
+      return;
+   }
    
-   text.innerText=currentPlayer;
+   testClick(document,boardIndex)
+  }
+
+function testClick(board,i) {
+   console.log("x");
+   board[i]=currentPlayer;
+  
+
+   
+  board.innerText=currentPlayer;
    
    
    /*const cell=event.target;*/
   /*document.write ("X");*/
  
   /*placeMark(cell,playerChoice)*/
-  let newElement=document.getElementsByTagName("button").innerHTML= b2
-   document.getElementById("div2").appendChild(newElement);
-   
-   var playerChoice =document.createTextNode(currentPlayer);
+ 
 
   
    
