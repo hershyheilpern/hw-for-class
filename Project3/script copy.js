@@ -26,19 +26,23 @@ const winningCondition = [
 ];
 gameIsOn();
 function buttonClick(id) {
-   const clicked = this.document.getElementById(id)
+   const clicked = this.document.getElementById("b"+id)
+   
    console.log(id)
    if (clicked.textContent != "" || !gameOn) {
        return;
    }
    else {
+      board[id] = currentPlayer
        clicked.textContent = currentPlayer
        isWinAndFin();
        if (currentPlayer == "X") {
            currentPlayer = "O"
        }
        else { currentPlayer = "X" }
+       if(gameOn){
        playerturn = document.getElementById("turn").textContent = currentPlayer + "'s turn"
+       }
        //updateSpace(this,arr1);
    }
 }
@@ -76,12 +80,18 @@ greet();
       let gameWon = false;
       let draw = false;
       winningCondition.map(condition=>{
+         console.log(board,condition)
           if (board[condition[0]] == board[condition[1]] && board[condition[1]] == board[condition[2]] && board[condition[0]] != ""){
               gameWon = true;
+              gameOn = false;
               console.log("win");
+              document.getElementById("turn").innerHTML = currentPlayer + "'s Wins!"
           }else if (board.every((x)=>x!="")){
               draw = true;
+              gameOn = false;
               console.log("draw");
+              document.getElementById("turn").innerHTML = "draw"
+
           }
       })
       return [gameWon,draw];
